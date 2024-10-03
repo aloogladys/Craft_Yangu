@@ -33,3 +33,6 @@ class SignupForm(UserCreationForm):
         'placeholder' : 'Confirm Password',
         'class' : 'w-full py-4 px-6 rounded-xl',
     }))
+
+class OTPVerificationForm(forms.Form):
+    otp = forms.CharField(label='OTP', max_length=6, min_length=6, widget=forms.TextInput(attrs={'class': 'form-control'}))
