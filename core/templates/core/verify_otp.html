@@ -1,10 +1,41 @@
-{% if error %}
-    <p style="color: red;">{{ error }}</p>
-{% endif %}
+{% extends 'core/base.html' %}
 
-<form method="post">
-    {% csrf_token %}
-    <label for="otp">Enter OTP:</label>
-    <input type="text" name="otp" id="otp" required>
-    <button type="submit">Verify OTP</button>
-</form>
+{% block title %}Verify OTP{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Verify Your Account</h3>
+                </div>
+                <div class="card-body">
+                    <p class="text-center">Please enter the 6-digit code sent to your phone.</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.otp.errors }}
+                            <input type="text" name="{{ form.otp.name }}" maxlength="6" class="form-control form-control-lg text-center" id="{{ form.otp.id_for_label }}" required>
+                        </div>
+                        <div class="form-group mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Verify OTP</button>
+                        </div>
+                    </form>
+                    <div class="mt-3 text-center">
+                        <p>Didn't receive the code? <a href="#" id="resend-otp">Resend OTP</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('resend-otp').addEventListener('click', function(e) {
+        e.preventDefault();
+        // Add AJAX call here to resend OTP
+        alert('OTP resend functionality to be implemented');
+    });
+</script>
+{% endblock %}
