@@ -8,10 +8,10 @@ import africastalking
 import random
 
 # Initialize Africa's Talking
-africastalking.initialize(
-    username=settings.AFRICASTALKING_USERNAME,
-    api_key=settings.AFRICASTALKING_API_KEY
-)
+# africastalking.initialize(
+#     # username=settings.AFRICASTALKING_USERNAME,
+#     # api_key=settings.AFRICASTALKING_API_KEY
+# )
 sms = africastalking.SMS
 
 def generate_otp():
@@ -83,12 +83,12 @@ def verify_otp(request, user_id):
     return render(request, 'core/verify_otp.html', {'form': form})
 
 def index(request):
-    items = Item.objects.filter(is_sold=False)[0:6]
-    categories = Category.objects.all()
+    # items = Item.objects.filter(is_sold=False)[0:6]
+    # categories = Category.objects.all()
 
     return render(request, 'core/index.html', {
-        'categories': categories,
-        'items': items,
+        # 'categories': categories,
+        # 'items': items,
     })
 
 def contact(request):
